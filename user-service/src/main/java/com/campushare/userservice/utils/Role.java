@@ -1,5 +1,5 @@
 
-package main.java.com.campushare.userservice.utils;
+package com.campushare.userservice.utils;
 
 public enum Role {
     DRIVER,

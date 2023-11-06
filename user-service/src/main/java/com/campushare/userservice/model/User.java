@@ -1,4 +1,4 @@
-package main.java.com.campushare.userservice.model;
+package com.campushare.userservice.model;
 
 import com.campushare.userservice.utils.Role;
 import com.campushare.userservice.utils.Address;
@@ -18,7 +18,7 @@ import java.util.List;
 @NoArgsConstructor
 
 public class User {
-   @Id
+    @Id
     private String username;
     private String password;
     private String email;

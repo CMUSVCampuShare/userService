@@ -1,21 +1,24 @@
 
-package main.java.com.campushare.userservice.service;
+package com.campushare.userservice.service;
 
 import java.util.List;
 
-import main.java.com.campushare.userservice.model.User;
-import main.java.com.campushare.userservice.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.campushare.userservice.model.User;
+import com.campushare.userservice.repository.UserRepository;
 
 @Service
 public class UserService {
-    
+
     @Autowired
     private UserRepository repository;
-    
-    //CRUD
+
+    // CRUD
 
     public User addUser(User user) {
-        user.setUsername();
+        // user.setUsername();
         return repository.save(user);
 
     }
@@ -25,25 +28,24 @@ public class UserService {
     }
 
     public User getUserByUsername(String username) {
-        return repository.findOneByUsername(username).get();
+        return repository.findByUsername(username);
     }
 
-/*     public List<User> getAddressByUsername(String username) {
-        return repository.getAddressesByUsername(username);
-    }
- */
+    /*
+     * public List<User> getAddressByUsername(String username) {
+     * return repository.getAddressesByUsername(username);
+     * }
+     */
 
     public User updateUser(User userrequest) {
-        User existingUser = repository.findOneByUsername(userrequest.getUsername()).get();
+        User existingUser = repository.findByUsername(userrequest.getUsername());
         existingUser.setAddress(userrequest.getAddress());
         return repository.save(existingUser);
     }
-   
+
     public String deleteUser(String username) {
-        repository.deleteUser(username);
-        return username+" user deleted";
+        repository.deleteByUsername(username);
+        return username + " user deleted";
     }
-
-
 
 }

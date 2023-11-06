@@ -1,8 +1,10 @@
 
-package main.java.com.campushare.userservice.utils;
+package com.campushare.userservice.utils;
+
+import java.util.Date;
 
 public class Schedule {
-    //private String scheduleName;
+    // private String scheduleName;
     private Date mondayEntry;
     private Date mondayExit;
     private Date tuesdayEntry;
