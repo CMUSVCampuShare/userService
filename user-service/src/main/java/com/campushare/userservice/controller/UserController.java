@@ -2,8 +2,6 @@
 package com.campushare.userservice.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.campushare.userservice.model.User;
@@ -18,18 +16,23 @@ public class UserController {
     @Autowired
     private UserService service;
 
-    @PostMapping
+    @PostMapping("/users")
     public User createUser(@RequestBody User user) {
         return service.addUser(user);
     }
 
-    @GetMapping
+    @GetMapping("/users")
     public List<User> getUsers() {
         return service.findAllUsers();
     }
 
-    @GetMapping("/{username}")
-    public User getUser(@PathVariable String username) {
+    @GetMapping("/users/{userId}")
+    public User getUserByUserId(@PathVariable String userId) {
+        return service.getUserByUserId(userId);
+    }
+
+    @GetMapping("/users/{username}")
+    public User getUserByUserName(@PathVariable String username) {
         return service.getUserByUsername(username);
     }
 
@@ -40,14 +43,14 @@ public class UserController {
      * }
      */
 
-    @PutMapping
-    public User modifyUser(@RequestBody User user) {
-        return service.updateUser(user);
+    @PutMapping("/users/{userId}")
+    public User modifyUser(@PathVariable String userId, @RequestBody User user) {
+        return service.updateUser(userId, user);
     }
 
-    @DeleteMapping("/{username}")
-    public String deleteUser(@PathVariable String username) {
-        return service.deleteUser(username);
+    @DeleteMapping("/users/{userId}")
+    public String deleteUserByUserId(@PathVariable String userId) {
+        return service.deleteUser(userId);
     }
 
 }
