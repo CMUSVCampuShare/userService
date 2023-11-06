@@ -20,7 +20,7 @@ public class UserService {
 
     }
 
-    public List<User> getAllUsers() {
+    public List<User> findAllUsers() {
         return repository.findAll();
     }
 
@@ -28,10 +28,10 @@ public class UserService {
         return repository.findOneByUsername(username).get();
     }
 
-    public List<User> getAddressByUsername(String username) {
+/*     public List<User> getAddressByUsername(String username) {
         return repository.getAddressesByUsername(username);
     }
-
+ */
 
     public User updateUser(User userrequest) {
         User existingUser = repository.findOneByUsername(userrequest.getUsername()).get();

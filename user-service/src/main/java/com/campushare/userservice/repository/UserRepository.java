@@ -9,7 +9,7 @@ import java.util.List;
 
 public class UserRepository extends MongoRepository<User, String> {
     
-    public List<User> getAddressesByUsername(String username) {
+   /*  public List<User> getAddressesByUsername(String username) {
     }
-    
+     */
 }
