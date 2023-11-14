@@ -12,7 +12,7 @@ public class Schedule {
     private Date wednesdayEntry;
     private Date wednesdayExit;
     private Date thursdayEntry;
-    private Date thurddayExit;
+    private Date thursdayExit;
     private Date fridayEntry;
     private Date fridayExit;
 

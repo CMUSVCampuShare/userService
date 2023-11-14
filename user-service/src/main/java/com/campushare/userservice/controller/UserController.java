@@ -10,7 +10,6 @@ import com.campushare.userservice.service.UserService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/users")
 public class UserController {
 
     @Autowired
