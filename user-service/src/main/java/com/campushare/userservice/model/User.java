@@ -19,9 +19,11 @@ public class User {
     private String username;
     private String password;
     private String email;
-    private Integer rewardpts;
     private Role role;
     private Schedule schedule;
     private Address address;
+    private String account;
+    private Integer noOfSeats;
+    private String licenseNo;
 
 }
