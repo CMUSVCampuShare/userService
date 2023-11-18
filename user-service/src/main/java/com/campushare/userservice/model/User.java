@@ -1,8 +1,8 @@
 package com.campushare.userservice.model;
 
 import com.campushare.userservice.utils.Role;
-import com.campushare.userservice.utils.Address;
 import com.campushare.userservice.utils.Schedule;
+import com.campushare.userservice.utils.Address;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
