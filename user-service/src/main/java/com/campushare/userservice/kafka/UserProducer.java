@@ -22,11 +22,11 @@ public class UserProducer {
 
     @Autowired
     @Qualifier("createUserTopic")
-    private NewTopic createUserTopic;
+    private NewTopic createUserTopicName;
 
     @Autowired
     @Qualifier("editUserTopic")
-    private NewTopic editUserTopic;
+    private NewTopic editUserTopicName;
 
     @Autowired
     private KafkaTemplate<String, UserDTO> kafkaTemplate;
@@ -37,12 +37,12 @@ public class UserProducer {
         if (topic == Topic.CREATE) {
             message = MessageBuilder
                     .withPayload(dto)
-                    .setHeader(KafkaHeaders.TOPIC, createUserTopic.name())
+                    .setHeader(KafkaHeaders.TOPIC, createUserTopicName.name())
                     .build();
         } else {
             message = MessageBuilder
                     .withPayload(dto)
-                    .setHeader(KafkaHeaders.TOPIC, editUserTopic.name())
+                    .setHeader(KafkaHeaders.TOPIC, editUserTopicName.name())
                     .build();
         }
         kafkaTemplate.send(message);
