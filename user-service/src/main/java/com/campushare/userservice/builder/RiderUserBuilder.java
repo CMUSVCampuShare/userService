@@ -1,4 +1,5 @@
 package com.campushare.userservice.builder;
+import org.mindrot.jbcrypt.BCrypt;
 
 
 import com.campushare.userservice.model.User;
@@ -28,9 +29,26 @@ public class RiderUserBuilder implements UserBuilder {
 
     @Override
     public UserBuilder setPassword(String password) {
-        this.user.setPassword(password);
+        // Hash the password before storing it
+        String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
+        this.user.setPassword(hashedPassword);
         return this;
     }
+    
+    public static boolean checkPassword(String plainPassword, String hashedPassword) {
+        // Check if the plain password matches the hashed password
+        return BCrypt.checkpw(plainPassword, hashedPassword);
+    } 
+    
+   /*  @Override
+    public UserBuilder setPassword(String password) {
+        // Hash the password before storing it
+        String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
+        this.user.setPassword(hashedPassword);
+        return this;
+    } */
+
+
 
     @Override
     public UserBuilder setEmail(String email) {

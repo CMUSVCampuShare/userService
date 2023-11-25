@@ -1,5 +1,7 @@
 package com.campushare.userservice.builder;
 
+import org.mindrot.jbcrypt.BCrypt;
+
 import com.campushare.userservice.model.User;
 import com.campushare.userservice.utils.Address;
 import com.campushare.userservice.utils.Role;
@@ -23,11 +25,18 @@ public class DriverUserBuilder implements UserBuilder {
         this.user.setUsername(username);
         return this;
     }
-
+    
     @Override
     public UserBuilder setPassword(String password) {
-        this.user.setPassword(password);
+        // Hash the password before storing it
+        String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
+        this.user.setPassword(hashedPassword);
         return this;
+    }
+
+    public static boolean checkPassword(String plainPassword, String hashedPassword) {
+        // Check if the plain password matches the hashed password
+        return BCrypt.checkpw(plainPassword, hashedPassword);
     }
 
     @Override
