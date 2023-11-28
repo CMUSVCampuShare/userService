@@ -21,7 +21,7 @@ public class UserController {
     @Autowired
     private UserService service;
 
-  @PostMapping("/users")
+@PostMapping("/users")
 public User createUser(@RequestBody User userCreationRequest) {
     UserBuilder userBuilder;
     if (userCreationRequest.getRole() == Role.RIDER) {

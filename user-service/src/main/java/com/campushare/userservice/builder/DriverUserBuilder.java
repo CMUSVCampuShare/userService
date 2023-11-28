@@ -3,9 +3,11 @@ package com.campushare.userservice.builder;
 import org.mindrot.jbcrypt.BCrypt;
 
 import com.campushare.userservice.model.User;
-import com.campushare.userservice.utils.Address;
+import com.campushare.userservice.model.Address;
+import com.campushare.userservice.model.Schedule;
+//import com.campushare.userservice.utils.Address;
 import com.campushare.userservice.utils.Role;
-import com.campushare.userservice.utils.Schedule;
+//import com.campushare.userservice.utils.Schedule;
 
 public class DriverUserBuilder implements UserBuilder {
     private User user = new User();
