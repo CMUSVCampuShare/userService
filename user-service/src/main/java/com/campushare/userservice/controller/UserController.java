@@ -2,11 +2,15 @@
 package com.campushare.userservice.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
+import com.campushare.userservice.utils.Topic;
 import com.campushare.userservice.builder.DriverUserBuilder;
 import com.campushare.userservice.builder.RiderUserBuilder;
 import com.campushare.userservice.builder.UserBuilder;
+import com.campushare.userservice.dto.UserDTO;
+import com.campushare.userservice.kafka.UserProducer;
 import com.campushare.userservice.model.User;
 import com.campushare.userservice.service.UserService;
 //import com.campushare.userservice.utils.Address;
@@ -20,6 +24,9 @@ public class UserController {
 
     @Autowired
     private UserService service;
+
+    @Autowired
+    private UserProducer userProducer;
 
 @PostMapping("/users")
 public User createUser(@RequestBody User userCreationRequest) {
@@ -44,20 +51,57 @@ public User createUser(@RequestBody User userCreationRequest) {
             .build();
 } 
 
-    @GetMapping("/users")
+    /* @GetMapping("/users")
     public List<User> getUsers() {
         return service.findAllUsers();
+    } */
+
+    @GetMapping("/users")
+    public ResponseEntity<List<User>> getAllUsers() {
+        ResponseEntity<List<User>> responseEntity;
+        try {
+            List<User> posts = service.getAllUsers();
+            responseEntity = new ResponseEntity<>(posts, HttpStatus.OK);
+        } catch (Exception ex) {
+            responseEntity = new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return responseEntity;
     }
 
-    @GetMapping("/users/{userId}")
+   /*  @GetMapping("/users/{userId}")
     public User getUserByUserId(@PathVariable String userId) {
         return service.getUserByUserId(userId);
     }
+ */
+     @GetMapping("/users/{userId}")
+    public ResponseEntity<User> getUser(@PathVariable String userId){
+        ResponseEntity<User> responseEntity;
+        try {
+            User user = service.getUserByUserId(userId);
+            responseEntity = new ResponseEntity<>(user, HttpStatus.OK);
+        } catch(Exception ex) {
+            responseEntity = new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return responseEntity;
+    }
 
-    @GetMapping("/users/{username}")
+   /*  @GetMapping("/users/{username}")
     public User getUserByUserName(@PathVariable String username) {
         return service.getUserByUsername(username);
+    } */
+
+     @GetMapping("/users/{username}")
+    public ResponseEntity<User> getUserByUsername(@PathVariable String username){
+        ResponseEntity<User> responseEntity;
+        try {
+            User user = service.getUserByUsername(username);
+            responseEntity = new ResponseEntity<>(user, HttpStatus.OK);
+        } catch(Exception ex) {
+            responseEntity = new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return responseEntity;
     }
+
 
     /*
      * @GetMapping("/{username}")
@@ -66,14 +110,43 @@ public User createUser(@RequestBody User userCreationRequest) {
      * }
      */
 
-    @PutMapping("/users/{userId}")
+  /*   @PutMapping("/users/{userId}")
     public User modifyUser(@PathVariable String userId, @RequestBody User user) {
         return service.updateUser(userId, user);
-    }
+    } */
 
-    @DeleteMapping("/users/{userId}")
+   /*  @PutMapping("/users/{userId}")
+    public ResponseEntity<User> editPost(@PathVariable String userId, @RequestBody UserRequest userRequest) {
+        ResponseEntity<User> responseEntity;
+        try {
+            User editedUser = service.updateUser(userId, userRequest);
+
+            UserDTO userDTO = new UserDTO();
+            userDTO.setUser(editedUser);
+            userProducer.sendMessage(Topic.EDIT, userDTO);
+
+            responseEntity = new ResponseEntity<>(editedUser, HttpStatus.OK);
+        } catch (Exception ex) {
+            responseEntity = new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return responseEntity;
+    } */
+
+    /* @DeleteMapping("/users/{userId}")
     public String deleteUserByUserId(@PathVariable String userId) {
         return service.deleteUser(userId);
+    } */
+
+    @DeleteMapping("/users/{userId}")
+    public ResponseEntity<Void> deleteUser(@PathVariable String userId) {
+        ResponseEntity<Void> responseEntity = null;
+        try {
+            service.deleteUser(userId);
+            responseEntity = new ResponseEntity<>(HttpStatus.OK);
+        } catch (Exception ex) {
+            responseEntity = new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return responseEntity;
     }
 
 }
