@@ -60,8 +60,8 @@ public User createUser(@RequestBody User userCreationRequest) {
     public ResponseEntity<List<User>> getAllUsers() {
         ResponseEntity<List<User>> responseEntity;
         try {
-            List<User> posts = service.getAllUsers();
-            responseEntity = new ResponseEntity<>(posts, HttpStatus.OK);
+            List<User> users = service.getAllUsers();
+            responseEntity = new ResponseEntity<>(users, HttpStatus.OK);
         } catch (Exception ex) {
             responseEntity = new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -90,7 +90,7 @@ public User createUser(@RequestBody User userCreationRequest) {
         return service.getUserByUsername(username);
     } */
 
-     @GetMapping("/users/{username}")
+ /*     @GetMapping("/users/{username}")
     public ResponseEntity<User> getUserByUsername(@PathVariable String username){
         ResponseEntity<User> responseEntity;
         try {
@@ -100,7 +100,7 @@ public User createUser(@RequestBody User userCreationRequest) {
             responseEntity = new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
         return responseEntity;
-    }
+    } */
 
 
     /*

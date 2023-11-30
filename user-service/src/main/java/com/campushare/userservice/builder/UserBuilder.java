@@ -1,7 +1,7 @@
 package com.campushare.userservice.builder;
 
 import com.campushare.userservice.model.User;
-import com.campushare.userservice.utils.Address;
+//import com.campushare.userservice.utils.Address;
 import com.campushare.userservice.utils.Role;
 import com.campushare.userservice.utils.Schedule;
 
@@ -18,7 +18,7 @@ public interface UserBuilder {
 
     UserBuilder setSchedule(Schedule schedule);
 
-    UserBuilder setAddress(Address address);
+    UserBuilder setAddress(String address);
 
     UserBuilder setRole(Role role);
 

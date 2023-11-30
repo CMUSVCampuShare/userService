@@ -2,7 +2,7 @@ package com.campushare.userservice.model;
 
 import com.campushare.userservice.utils.Role;
 import com.campushare.userservice.utils.Schedule;
-import com.campushare.userservice.utils.Address;
+//import com.campushare.userservice.utils.Address;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,7 +21,7 @@ public class User {
     private String email;
     private Role role;
     private Schedule schedule;
-    private Address address;
+    private String address;
     private String account;
     private Integer noOfSeats;
     private String licenseNo;

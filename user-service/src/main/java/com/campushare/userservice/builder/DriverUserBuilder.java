@@ -54,7 +54,7 @@ public class DriverUserBuilder implements UserBuilder {
     }
 
     @Override
-    public UserBuilder setAddress(Address address) {
+    public UserBuilder setAddress(String address) {
         this.user.setAddress(address);
         return this;
     }
