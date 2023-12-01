@@ -29,7 +29,7 @@ public class UserController {
     private UserProducer userProducer;
 
 @PostMapping("/users")
-public User createUser(@RequestBody User userCreationRequest) {
+public ResponseEntity<User> createUser(@RequestBody User userCreationRequest) {
     UserBuilder userBuilder;
     if (userCreationRequest.getRole() == Role.RIDER) {
         userBuilder = new RiderUserBuilder();
@@ -40,7 +40,7 @@ public User createUser(@RequestBody User userCreationRequest) {
         throw new IllegalArgumentException("Invalid role");
     }
 
-    return userBuilder
+    User user = userBuilder
             .setUsername(userCreationRequest.getUsername())
             .setPassword(userCreationRequest.getPassword())
             .setEmail(userCreationRequest.getEmail())
@@ -49,6 +49,7 @@ public User createUser(@RequestBody User userCreationRequest) {
             .setRole(userCreationRequest.getRole())
             .setPayPalAccount(userCreationRequest.getAccount())
             .build();
+    return new ResponseEntity<>(user, HttpStatus.CREATED);
 } 
 
     /* @GetMapping("/users")
@@ -90,7 +91,7 @@ public User createUser(@RequestBody User userCreationRequest) {
         return service.getUserByUsername(username);
     } */
 
- /*     @GetMapping("/users/{username}")
+   @GetMapping("/users/findBy/{username}")
     public ResponseEntity<User> getUserByUsername(@PathVariable String username){
         ResponseEntity<User> responseEntity;
         try {
@@ -100,7 +101,7 @@ public User createUser(@RequestBody User userCreationRequest) {
             responseEntity = new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
         return responseEntity;
-    } */
+    } 
 
 
     /*
