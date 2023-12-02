@@ -1,5 +1,4 @@
 package com.campushare.userservice.builder;
-import java.util.Date;
 
 import org.mindrot.jbcrypt.BCrypt;
 

@@ -3,10 +3,9 @@ package com.campushare.userservice.service;
 
 import java.util.List;
 import java.util.UUID;
-
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.campushare.userservice.model.User;
 import com.campushare.userservice.repository.UserRepository;
 
@@ -36,15 +35,28 @@ public class UserService {
         return repository.findByUsername(username);
     }
 
-    /*
-     * public List<User> getAddressByUsername(String username) {
-     * return repository.getAddressesByUsername(username);
-     * }
-     */
 
     public User updateUser(String userId, User userRequest) {
         User existingUser = repository.findById(userId).get();
-        existingUser.setAddress(userRequest.getAddress());
+        if (existingUser.getAddress() != null) {
+            existingUser.setAddress(userRequest.getAddress());
+        }
+        if (existingUser.getPassword() != null) {
+            String hashedPassword = BCrypt.hashpw(userRequest.getPassword(), BCrypt.gensalt());
+            existingUser.setPassword(hashedPassword);
+        }
+        if (existingUser.getEntryTime() != null) {
+            existingUser.setEntryTime(userRequest.getEntryTime());
+        }
+        if (existingUser.getExitTime() != null) {
+            existingUser.setExitTime(userRequest.getExitTime());
+        }
+        if (existingUser.getNoOfSeats() != null) {
+            existingUser.setNoOfSeats(userRequest.getNoOfSeats());
+        }
+        if(existingUser.getLicenseNo() != null) {
+            existingUser.setLicenseNo(userRequest.getLicenseNo());
+        }        
         return repository.save(existingUser);
     }
 

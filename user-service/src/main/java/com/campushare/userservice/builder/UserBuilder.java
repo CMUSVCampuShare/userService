@@ -1,9 +1,5 @@
 package com.campushare.userservice.builder;
-
-import java.util.Date;
-
 import com.campushare.userservice.model.User;
-//import com.campushare.userservice.utils.Address;
 import com.campushare.userservice.utils.Role;
 
 public interface UserBuilder {

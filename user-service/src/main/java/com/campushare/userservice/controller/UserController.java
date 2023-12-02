@@ -13,9 +13,7 @@ import com.campushare.userservice.dto.UserDTO;
 import com.campushare.userservice.kafka.UserProducer;
 import com.campushare.userservice.model.User;
 import com.campushare.userservice.service.UserService;
-//import com.campushare.userservice.utils.Address;
 import com.campushare.userservice.utils.Role;
-//import com.campushare.userservice.utils.Schedule;
 
 import java.util.List;
 
@@ -53,11 +51,7 @@ public ResponseEntity<User> createUser(@RequestBody User userCreationRequest) {
     return new ResponseEntity<>(user, HttpStatus.CREATED);
 } 
 
-    /* @GetMapping("/users")
-    public List<User> getUsers() {
-        return service.findAllUsers();
-    } */
-
+   
     @GetMapping("/users")
     public ResponseEntity<List<User>> getAllUsers() {
         ResponseEntity<List<User>> responseEntity;
@@ -70,11 +64,7 @@ public ResponseEntity<User> createUser(@RequestBody User userCreationRequest) {
         return responseEntity;
     }
 
-   /*  @GetMapping("/users/{userId}")
-    public User getUserByUserId(@PathVariable String userId) {
-        return service.getUserByUserId(userId);
-    }
- */
+
      @GetMapping("/users/{userId}")
     public ResponseEntity<User> getUser(@PathVariable String userId){
         ResponseEntity<User> responseEntity;
@@ -87,10 +77,6 @@ public ResponseEntity<User> createUser(@RequestBody User userCreationRequest) {
         return responseEntity;
     }
 
-   /*  @GetMapping("/users/{username}")
-    public User getUserByUserName(@PathVariable String username) {
-        return service.getUserByUsername(username);
-    } */
 
    @GetMapping("/users/findBy/{username}")
     public ResponseEntity<User> getUserByUsername(@PathVariable String username){
@@ -104,24 +90,11 @@ public ResponseEntity<User> createUser(@RequestBody User userCreationRequest) {
         return responseEntity;
     } 
 
-
-    /*
-     * @GetMapping("/{username}")
-     * public List<User> getAddress(@PathVariable String username) {
-     * return service.getAddressByUsername(username);
-     * }
-     */
-
-  /*   @PutMapping("/users/{userId}")
-    public User modifyUser(@PathVariable String userId, @RequestBody User user) {
-        return service.updateUser(userId, user);
-    } */
-
-   /*  @PutMapping("/users/{userId}")
-    public ResponseEntity<User> editPost(@PathVariable String userId, @RequestBody UserRequest userRequest) {
+    @PutMapping("/users/{userId}")
+    public ResponseEntity<User> editPost(@PathVariable String userId, @RequestBody User user) {
         ResponseEntity<User> responseEntity;
         try {
-            User editedUser = service.updateUser(userId, userRequest);
+            User editedUser = service.updateUser(userId, user);
 
             UserDTO userDTO = new UserDTO();
             userDTO.setUser(editedUser);
@@ -132,12 +105,8 @@ public ResponseEntity<User> createUser(@RequestBody User userCreationRequest) {
             responseEntity = new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
         return responseEntity;
-    } */
+    } 
 
-    /* @DeleteMapping("/users/{userId}")
-    public String deleteUserByUserId(@PathVariable String userId) {
-        return service.deleteUser(userId);
-    } */
 
     @DeleteMapping("/users/{userId}")
     public ResponseEntity<Void> deleteUser(@PathVariable String userId) {
