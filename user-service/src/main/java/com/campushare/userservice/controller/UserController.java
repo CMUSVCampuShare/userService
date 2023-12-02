@@ -48,6 +48,7 @@ public ResponseEntity<User> createUser(@RequestBody User userCreationRequest) {
             .setRole(userCreationRequest.getRole())
             .setPayPalAccount(userCreationRequest.getAccount())
             .build();
+    service.addUser(user);
     return new ResponseEntity<>(user, HttpStatus.CREATED);
 } 
 
