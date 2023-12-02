@@ -1,4 +1,4 @@
-
+/* 
 package com.campushare.userservice.utils;
 
 import java.util.Date;
@@ -17,3 +17,4 @@ public class Schedule {
     private Date fridayExit;
 
 }
+ */

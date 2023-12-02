@@ -1,9 +1,10 @@
 package com.campushare.userservice.builder;
 
+import java.util.Date;
+
 import com.campushare.userservice.model.User;
 //import com.campushare.userservice.utils.Address;
 import com.campushare.userservice.utils.Role;
-import com.campushare.userservice.utils.Schedule;
 
 public interface UserBuilder {
     User build();
@@ -16,7 +17,9 @@ public interface UserBuilder {
 
     UserBuilder setEmail(String email);
 
-    UserBuilder setSchedule(Schedule schedule);
+    UserBuilder setEntryTime(String entryTime);
+
+    UserBuilder setExitTime(String exitTime);
 
     UserBuilder setAddress(String address);
 

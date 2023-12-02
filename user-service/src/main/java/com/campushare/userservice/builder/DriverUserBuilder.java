@@ -1,13 +1,13 @@
 package com.campushare.userservice.builder;
 
+import java.util.Date;
+
 import org.mindrot.jbcrypt.BCrypt;
 
 import com.campushare.userservice.model.User;
 //import com.campushare.userservice.model.Address;
 //import com.campushare.userservice.model.Schedule;
-import com.campushare.userservice.utils.Address;
 import com.campushare.userservice.utils.Role;
-import com.campushare.userservice.utils.Schedule;
 
 public class DriverUserBuilder implements UserBuilder {
     private User user = new User();
@@ -46,12 +46,20 @@ public class DriverUserBuilder implements UserBuilder {
         this.user.setEmail(email);
         return this;
     }
-
+    
     @Override
-    public UserBuilder setSchedule(Schedule schedule) {
-        this.user.setSchedule(schedule);
+    public UserBuilder setEntryTime(String entryTime) {
+        this.user.setEntryTime(entryTime);
         return this;
     }
+
+    @Override
+    public UserBuilder setExitTime(String exitTime) {
+        this.user.setExitTime(exitTime);
+        return this;
+    }
+
+    
 
     @Override
     public UserBuilder setAddress(String address) {

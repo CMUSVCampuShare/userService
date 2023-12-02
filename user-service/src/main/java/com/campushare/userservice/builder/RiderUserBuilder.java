@@ -1,11 +1,12 @@
 package com.campushare.userservice.builder;
+import java.util.Date;
+
 import org.mindrot.jbcrypt.BCrypt;
 
 
 import com.campushare.userservice.model.User;
 //import com.campushare.userservice.utils.Address;
 import com.campushare.userservice.utils.Role;
-import com.campushare.userservice.utils.Schedule;
 
 public class RiderUserBuilder implements UserBuilder {
 
@@ -57,8 +58,14 @@ public class RiderUserBuilder implements UserBuilder {
     }
 
     @Override
-    public UserBuilder setSchedule(Schedule schedule) {
-        this.user.setSchedule(schedule);
+    public UserBuilder setEntryTime(String entryTime) {
+        this.user.setEntryTime(entryTime);
+        return this;
+    }
+
+    @Override
+    public UserBuilder setExitTime(String exitTime) {
+        this.user.setExitTime(exitTime);
         return this;
     }
 
