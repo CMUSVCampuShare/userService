@@ -48,10 +48,12 @@ public ResponseEntity<User> createUser(@RequestBody User userCreationRequest) {
             .setRole(userCreationRequest.getRole())
             .setPayPalAccount(userCreationRequest.getAccount())
             .build();
-    service.addUser(user);
-    return new ResponseEntity<>(user, HttpStatus.CREATED);
-} 
-
+    User createdUser = service.addUser(user);
+    UserDTO userDTO = new UserDTO();
+    userDTO.setUser(createdUser);
+    userProducer.sendMessage(Topic.CREATE, userDTO);
+    return new ResponseEntity<>(createdUser, HttpStatus.CREATED);
+}
    
     @GetMapping("/users")
     public ResponseEntity<List<User>> getAllUsers() {
