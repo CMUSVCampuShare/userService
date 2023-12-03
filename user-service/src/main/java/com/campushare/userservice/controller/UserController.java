@@ -92,7 +92,7 @@ public ResponseEntity<User> createUser(@RequestBody User userCreationRequest) {
     } 
 
     @PutMapping("/users/{userId}")
-    public ResponseEntity<User> editPost(@PathVariable String userId, @RequestBody User user) {
+    public ResponseEntity<User> editUser(@PathVariable String userId, @RequestBody User user) {
         ResponseEntity<User> responseEntity;
         try {
             User editedUser = service.updateUser(userId, user);

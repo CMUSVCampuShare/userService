@@ -31,7 +31,8 @@ public class DriverUserBuilder implements UserBuilder {
     @Override
     public UserBuilder setPassword(String password) {
         // Hash the password before storing it
-        String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
+        String salt = "$2a$10$abcdefghijklmnopqrstuu";
+        String hashedPassword = BCrypt.hashpw(password, salt);
         this.user.setPassword(hashedPassword);
         return this;
     }

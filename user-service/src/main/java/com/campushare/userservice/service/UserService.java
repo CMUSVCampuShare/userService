@@ -42,7 +42,8 @@ public class UserService {
             existingUser.setAddress(userRequest.getAddress());
         }
         if (existingUser.getPassword() != null) {
-            String hashedPassword = BCrypt.hashpw(userRequest.getPassword(), BCrypt.gensalt());
+            String salt = "$2a$10$abcdefghijklmnopqrstuu";
+            String hashedPassword = BCrypt.hashpw(userRequest.getPassword(), salt);
             existingUser.setPassword(hashedPassword);
         }
         if (existingUser.getEntryTime() != null) {
