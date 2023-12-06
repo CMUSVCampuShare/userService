@@ -1,12 +1,9 @@
 package com.campushare.userservice.builder;
 
-import java.util.Date;
-
 import org.mindrot.jbcrypt.BCrypt;
 
 import com.campushare.userservice.model.User;
-//import com.campushare.userservice.model.Address;
-//import com.campushare.userservice.model.Schedule;
+
 import com.campushare.userservice.utils.Role;
 
 public class DriverUserBuilder implements UserBuilder {
@@ -31,9 +28,9 @@ public class DriverUserBuilder implements UserBuilder {
     @Override
     public UserBuilder setPassword(String password) {
         // Hash the password before storing it
-        String salt = "$2a$10$abcdefghijklmnopqrstuu";
-        String hashedPassword = BCrypt.hashpw(password, salt);
-        this.user.setPassword(hashedPassword);
+        //String salt = "$2a$10$abcdefghijklmnopqrstuu";
+        //String hashedPassword = BCrypt.hashpw(password, salt);
+        this.user.setPassword(password);
         return this;
     }
 

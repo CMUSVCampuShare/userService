@@ -30,9 +30,9 @@ public class RiderUserBuilder implements UserBuilder {
     @Override
     public UserBuilder setPassword(String password) {
         // Hash the password before storing it
-        String salt = "$2a$10$abcdefghijklmnopqrstuu";
-        String hashedPassword = BCrypt.hashpw(password, salt);
-        this.user.setPassword(hashedPassword);
+        //String salt = "$2a$10$abcdefghijklmnopqrstuu";
+        //String hashedPassword = BCrypt.hashpw(password, salt);
+        this.user.setPassword(password);
         return this;
     }
     
@@ -41,16 +41,6 @@ public class RiderUserBuilder implements UserBuilder {
         return BCrypt.checkpw(plainPassword, hashedPassword);
     } 
     
-   /*  @Override
-    public UserBuilder setPassword(String password) {
-        // Hash the password before storing it
-        String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
-        this.user.setPassword(hashedPassword);
-        return this;
-    } */
-
-
-
     @Override
     public UserBuilder setEmail(String email) {
         this.user.setEmail(email);

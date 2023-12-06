@@ -38,26 +38,27 @@ public class UserService {
 
     public User updateUser(String userId, User userRequest) {
         User existingUser = repository.findById(userId).get();
-        if (existingUser.getAddress() != null) {
+        if (userRequest.getAddress() != null) {
             existingUser.setAddress(userRequest.getAddress());
         }
-        if (existingUser.getPassword() != null) {
-            String salt = "$2a$10$abcdefghijklmnopqrstuu";
-            String hashedPassword = BCrypt.hashpw(userRequest.getPassword(), salt);
-            existingUser.setPassword(hashedPassword);
+        if (userRequest.getPassword() != null) {
+            //String salt = "$2a$10$abcdefghijklmnopqrstuu";
+            //String hashedPassword = BCrypt.hashpw(userRequest.getPassword(), salt);
+            existingUser.setPassword(userRequest.getPassword());
         }
-        if (existingUser.getEntryTime() != null) {
+        if (userRequest.getEntryTime() != null) {
             existingUser.setEntryTime(userRequest.getEntryTime());
         }
-        if (existingUser.getExitTime() != null) {
+        if (userRequest.getExitTime() != null) {
             existingUser.setExitTime(userRequest.getExitTime());
         }
-        if (existingUser.getNoOfSeats() != null) {
+        if (userRequest.getNoOfSeats() != null) {
             existingUser.setNoOfSeats(userRequest.getNoOfSeats());
         }
-        if(existingUser.getLicenseNo() != null) {
+        if (userRequest.getLicenseNo() != null) {
             existingUser.setLicenseNo(userRequest.getLicenseNo());
-        }        
+        }
+        
         return repository.save(existingUser);
     }
 
