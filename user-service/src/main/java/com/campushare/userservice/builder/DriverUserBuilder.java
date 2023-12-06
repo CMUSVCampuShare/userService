@@ -1,9 +1,10 @@
 package com.campushare.userservice.builder;
 
+import org.mindrot.jbcrypt.BCrypt;
+
 import com.campushare.userservice.model.User;
-import com.campushare.userservice.utils.Address;
+
 import com.campushare.userservice.utils.Role;
-import com.campushare.userservice.utils.Schedule;
 
 public class DriverUserBuilder implements UserBuilder {
     private User user = new User();
@@ -23,11 +24,19 @@ public class DriverUserBuilder implements UserBuilder {
         this.user.setUsername(username);
         return this;
     }
-
+    
     @Override
     public UserBuilder setPassword(String password) {
+        // Hash the password before storing it
+        //String salt = "$2a$10$abcdefghijklmnopqrstuu";
+        //String hashedPassword = BCrypt.hashpw(password, salt);
         this.user.setPassword(password);
         return this;
+    }
+
+    public static boolean checkPassword(String plainPassword, String hashedPassword) {
+        // Check if the plain password matches the hashed password
+        return BCrypt.checkpw(plainPassword, hashedPassword);
     }
 
     @Override
@@ -35,15 +44,23 @@ public class DriverUserBuilder implements UserBuilder {
         this.user.setEmail(email);
         return this;
     }
-
+    
     @Override
-    public UserBuilder setSchedule(Schedule schedule) {
-        this.user.setSchedule(schedule);
+    public UserBuilder setEntryTime(String entryTime) {
+        this.user.setEntryTime(entryTime);
         return this;
     }
 
     @Override
-    public UserBuilder setAddress(Address address) {
+    public UserBuilder setExitTime(String exitTime) {
+        this.user.setExitTime(exitTime);
+        return this;
+    }
+
+    
+
+    @Override
+    public UserBuilder setAddress(String address) {
         this.user.setAddress(address);
         return this;
     }

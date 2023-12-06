@@ -1,0 +1,25 @@
+{
+    "properties": [
+        {
+            "name": "spring.kafka.topic.edit-user-topic-name",
+            "type": "java.lang.String",
+            "description": "A description for 'spring.kafka.topic.edit-user-topic-name'"
+        }
+    ]
+}{
+    "properties": [
+        {
+            "name": "spring.kafka.topic.create-user-topic-name",
+            "type": "java.lang.String",
+            "description": "A description for 'spring.kafka.topic.create-user-topic-name'"
+        }
+    ]
+}{
+    "properties": [
+        {
+            "name": "spring.kafka.topic.create-user-topic-name",
+            "type": "java.lang.String",
+            "description": "A description for 'spring.kafka.topic.create-user-topic-name'"
+        }
+    ]
+}

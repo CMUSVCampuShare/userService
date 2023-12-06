@@ -1,11 +1,12 @@
 package com.campushare.userservice.model;
 
 import com.campushare.userservice.utils.Role;
-import com.campushare.userservice.utils.Schedule;
-import com.campushare.userservice.utils.Address;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.sql.Date;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -20,10 +21,11 @@ public class User {
     private String password;
     private String email;
     private Role role;
-    private Schedule schedule;
-    private Address address;
+    private String entryTime;
+    private String exitTime;
+    private String address;
     private String account;
     private Integer noOfSeats;
     private String licenseNo;
-
+  
 }
